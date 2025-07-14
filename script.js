@@ -77,3 +77,7 @@ nextButton.addEventListener('click', ()=>{
 function currentSlide(n) {
   showSlides(slidesIndex = n);
 }
+
+
+setInterval(plusSlides, 5000)
+
