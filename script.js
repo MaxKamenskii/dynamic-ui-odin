@@ -33,25 +33,36 @@ function toggleImgSource() {
 const prevButton = document.querySelector('.prev')
 const nextButton = document.querySelector('.next')
 
-let slideIndex = 5;
+let slidesIndex = 1;
 function showSlides(n){
     let slides = document.getElementsByClassName('imgDiv')
-    // for(const slide of slides){
-    //     console.log(slide)
-    // }
-    slides[slideIndex - 1].style.display = "block"
+    if (n > slides.length){
+        slidesIndex = 1;
+    }
+    if(n < 1){
+        slidesIndex = slides.length
+    }
+    for(const slide of slides){
+        slide.style.display = "none"
+    }
+
+    slides[slidesIndex - 1].style.display = "block"
+    
     // console.log(slides[n])
 }
-
-showSlides(slideIndex)
+console.log(`Deafult slide is: ${slidesIndex}`)
+showSlides(slidesIndex)
 
 function plusSlides(){
-    let increment = slideIndex + 1;
-    showSlides(increment)
+    slidesIndex = slidesIndex + 1;
+
+    console.log(slidesIndex)
+    showSlides(slidesIndex)
 }
 function minusSlides(){
-    let increment = slideIndex - 1;
-    showSlides(increment)
+    slidesIndex = slidesIndex - 1;
+    console.log(slidesIndex)
+    showSlides(slidesIndex)
 }
 
 prevButton.addEventListener('click', ()=>{
@@ -62,3 +73,7 @@ nextButton.addEventListener('click', ()=>{
     console.log("button is working")
     plusSlides()
 })
+
+function currentSlide(n) {
+  showSlides(slidesIndex = n);
+}
